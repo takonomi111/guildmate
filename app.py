@@ -3,7 +3,8 @@ from datetime import datetime
 from models import db, Member, Tag, Game, Event, EventParticipant
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///members.db'
+import os
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.secret_key = 'secret'
 db.init_app(app)
 
