@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>イベント詳細</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-4">
+    <h1 class="mb-3">{{ event.title }}</h1>
+    <p><strong>日付:</strong> {{ event.date.strftime('%Y-%m-%d') }}</p>
+    <p><strong>ゲーム:</strong> {{ event.game.name }}</p>
+    <p><strong>説明:</strong><br>{{ event.description or "（なし）" }}</p>
+
+    <h4 class="mt-4">参加状況</h4>
+    <div class="row">
+        {% for status, members in by_status.items() %}
+        <div class="col-md-4">
+            <h5>{{ status }}</h5>
+            <ul class="list-group">
+                {% for member in members %}
+                <li class="list-group-item">{{ member.name }}</li>
+                {% else %}
+                <li class="list-group-item text-muted">なし</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="{{ url_for('edit_event_participation', event_id=event.id) }}" class="btn btn-outline-primary mt-4">参加状況を編集する</a>
+    <a href="{{ url_for('list_events') }}" class="btn btn-secondary mt-4">戻る</a>
+</body>
+</html>

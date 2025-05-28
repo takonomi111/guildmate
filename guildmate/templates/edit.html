@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GuildMate - メンバー編集</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light text-dark">
+<div class="container py-4">
+    <h1 class="mb-4">メンバー情報を編集</h1>
+
+    <form method="post" class="bg-white p-4 rounded shadow-sm">
+        <div class="mb-3">
+            <label class="form-label">名前</label>
+            <input type="text" name="name" class="form-control" value="{{ member.name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">参加ゲーム（カンマ区切り）</label>
+            <input type="text" name="games" class="form-control" value="{{ game_string }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">タグ（カンマ区切り）</label>
+            <input type="text" name="tags" class="form-control" value="{{ tag_string }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">メモ</label>
+            <textarea name="note" class="form-control" rows="4">{{ member.note }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">保存</button>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary ms-2">戻る</a>
+    </form>
+</div>
+</body>
+</html>
