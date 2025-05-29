@@ -4,7 +4,7 @@ from models import db, Member, Tag, Game, Event, EventParticipant
 
 app = Flask(__name__)
 import os
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///members.db')
 app.secret_key = 'secret'
 db.init_app(app)
 
